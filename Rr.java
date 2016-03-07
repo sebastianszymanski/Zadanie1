@@ -1,31 +1,18 @@
 import java.util.*;
 import java.io.*;
 
-public class Rr {
-
-	public class Rekord
-	{
-		public int numerProcesu;
-		public int pozostalyCzasWykonania;
-		public int czasOczekiwania;
-		
-		public Rekord(int np, int pcw, int co)
-		{
-			numerProcesu = np;
-			pozostalyCzasWykonania = pcw;
-			czasOczekiwania = co;
-		}
-	}
-	
+public class Rr{
 	public static void main(String[] args) throws FileNotFoundException {
 
 		Scanner wej = new Scanner(new File("Dane.txt"));
 		Scanner wej2 = new Scanner(new File("Dane.txt"));
-		ArrayDeque<Integer> danecp = new ArrayDeque<Integer>();
-		ArrayDeque<Integer> daneak = new ArrayDeque<Integer>();
+		ArrayDeque<Rekord> danecp = new ArrayDeque<Rekord>();
+		ArrayDeque<Rekord> daneak = new ArrayDeque<Rekord>();
+		int i = 0;
 		while (wej.hasNext())
 		{
-			danecp.add(wej.nextInt());
+			i++;
+			danecp.add(new Rekord(i, wej.nextInt(), 0));
 		}
 		wej.close();
 		wej2.close();
