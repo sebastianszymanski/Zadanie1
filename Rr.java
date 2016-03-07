@@ -1,13 +1,15 @@
 import java.util.*;
+
 import java.io.*;
 
 public class Rr{
 	public static void main(String[] args) throws FileNotFoundException {
 		int kwantCzasu = 10;
-		int liczus = 0;
+		int czas = 0;
+		int czasc = 0;
 		Scanner wej = new Scanner(new File("Dane.txt"));
 		ArrayDeque<Rekord> daneak = new ArrayDeque<Rekord>();
-		ArrayDeque<Rekord> pamiec = new ArrayDeque<Rekord>();
+		SortedMap<Integer, Rekord> pamiec = new TreeMap<Integer, Rekord>();
 		int i = 0;
 		for (int j = 0; j < 10; j++)
 		{
@@ -25,6 +27,7 @@ public class Rr{
 					r.czasOczekiwania +=kwantCzasu;
 				}
 				daneak.add(temp);
+				czas += kwantCzasu;
 			}
 			else
 			{
@@ -32,23 +35,29 @@ public class Rr{
 				{
 					r.czasOczekiwania += temp.pozostalyCzasWykonania;
 				}
+				czas += temp.pozostalyCzasWykonania;
 				temp.pozostalyCzasWykonania = 0;
-				pamiec.add(temp);
-				liczus++;
+				pamiec.put(temp.numerProcesu, temp);
 			}
-			if (liczus >= 5)
+			if (wej.hasNext() && czas > 12)
 			{
-				for (int j = 0;wej.hasNext()&& j < 5; j++)
-				{
-					i++;
-					daneak.add(new Rekord(i, wej.nextInt(), 0));
-				}
-			liczus = 0;
+				i++;
+				daneak.add(new Rekord(i, wej.nextInt(), 0));
+				czas = 0;
 			}
+
 		}
 		
 		
 		wej.close();
+		System.out.println(i);
+		for (int j = 1; j <= i; j++)
+		{
+			czasc += pamiec.get(j).czasOczekiwania;
+			System.out.println(pamiec.get(j));
+		}
+		float te = czasc/i;
+		System.out.println("Œredni czas oczekiwania wyniós³ " + te + " ms");
 	}
 
 }
