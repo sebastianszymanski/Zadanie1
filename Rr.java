@@ -5,7 +5,6 @@ public class Rr{
 	public static void main(String[] args) throws FileNotFoundException {
 		int kwantCzasu = 10;
 		int liczus = 0;
-		int czas = 0;
 		Scanner wej = new Scanner(new File("Dane.txt"));
 		ArrayDeque<Rekord> daneak = new ArrayDeque<Rekord>();
 		ArrayDeque<Rekord> pamiec = new ArrayDeque<Rekord>();
@@ -20,10 +19,31 @@ public class Rr{
 			Rekord temp = daneak.remove();
 			if (temp.pozostalyCzasWykonania > kwantCzasu)
 			{
-				temp.pozostalyCzasWykonania -= 10;
-				temp.czasOczekiwania += czas;
+				temp.pozostalyCzasWykonania -= kwantCzasu;
+				for (Rekord r : daneak)
+				{
+					r.czasOczekiwania +=kwantCzasu;
+				}
 				daneak.add(temp);
-				czas += 10;
+			}
+			else
+			{
+				for (Rekord r : daneak)
+				{
+					r.czasOczekiwania += temp.pozostalyCzasWykonania;
+				}
+				temp.pozostalyCzasWykonania = 0;
+				pamiec.add(temp);
+				liczus++;
+			}
+			if (liczus >= 5)
+			{
+				for (int j = 0;wej.hasNext()&& j < 5; j++)
+				{
+					i++;
+					daneak.add(new Rekord(i, wej.nextInt(), 0));
+				}
+			liczus = 0;
 			}
 		}
 		
