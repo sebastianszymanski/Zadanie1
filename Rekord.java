@@ -1,5 +1,5 @@
 
-public class Rekord {
+public class Rekord  {
 
 	public int numerProcesu;
 	public int pozostalyCzasWykonania;
@@ -12,4 +12,9 @@ public class Rekord {
 		czasOczekiwania = co;
 	}
 	
+	public String toString()
+	{
+		return numerProcesu + " " + czasOczekiwania;
+	}
+
 }
