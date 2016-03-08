@@ -7,14 +7,20 @@ public class Rr{
 		int kwantCzasu = 10;
 		int czas = 0;
 		int czasc = 0;
-		Scanner wej = new Scanner(new File("Dane.txt"));
+                String plik;
+		System.out.println("ProszÄ™ wybrac plik");
+		Scanner sc= new Scanner(System.in);
+		plik=sc.next();
+		FileReader f = new FileReader(plik);
+		sc.close();
+		sc = new Scanner(f);		
 		ArrayDeque<Rekord> daneak = new ArrayDeque<Rekord>();
 		SortedMap<Integer, Rekord> pamiec = new TreeMap<Integer, Rekord>();
 		int i = 0;
 		for (int j = 0; j < 10; j++)
 		{
 			i++;
-			daneak.add(new Rekord(i, wej.nextInt(), 0));
+			daneak.add(new Rekord(i, sc.nextInt(), 0));
 		}
 		while (!daneak.isEmpty())
 		{
@@ -49,7 +55,7 @@ public class Rr{
 		}
 		
 		
-		wej.close();
+		sc.close();
 		System.out.println(i);
 		for (int j = 1; j <= i; j++)
 		{
@@ -57,7 +63,7 @@ public class Rr{
 			System.out.println(pamiec.get(j));
 		}
 		float te = czasc/i;
-		System.out.println("Œredni czas oczekiwania wyniós³ " + te + " ms");
+		System.out.println("Åšredni czas oczekiwania wyniÃ³sÅ‚ " + te + " ms");
 	}
 
 }
