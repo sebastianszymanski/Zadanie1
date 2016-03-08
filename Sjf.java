@@ -7,8 +7,13 @@ public class Sjf {
 		int czas=0;
 		int proces=0;
 		int i=0;
-		FileReader f = new FileReader("Dane.txt");
-		Scanner sc = new Scanner(f);
+		String plik;
+		System.out.println("Proszę wybrac plik");
+		Scanner sc= new Scanner(System.in);
+		plik=sc.next();
+		FileReader f = new FileReader(plik);
+		sc.close();
+		sc = new Scanner(f);
 		PriorityQueue <Integer> dane = new PriorityQueue<Integer>();
 		 while(sc.hasNextInt()) {
              dane.add(sc.nextInt());
