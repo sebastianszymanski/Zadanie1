@@ -1,12 +1,11 @@
 import java.util.*;
-
 import java.io.*;
 
 public class Rr{
 	public static void main(String[] args) throws FileNotFoundException {
 		int kwantCzasu = 10;
 		int czasc = 0;
-                String plik;
+        String plik;
 		System.out.println("Proszê wybrac plik");
 		Scanner sc= new Scanner(System.in);
 		plik=sc.next();
