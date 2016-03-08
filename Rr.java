@@ -1,14 +1,12 @@
 import java.util.*;
-
 import java.io.*;
 
 public class Rr{
 	public static void main(String[] args) throws FileNotFoundException {
 		int kwantCzasu = 10;
-		int czas = 0;
 		int czasc = 0;
-                String plik;
-		System.out.println("ProszÄ™ wybrac plik");
+        String plik;
+		System.out.println("Proszê wybrac plik");
 		Scanner sc= new Scanner(System.in);
 		plik=sc.next();
 		FileReader f = new FileReader(plik);
@@ -33,7 +31,6 @@ public class Rr{
 					r.czasOczekiwania +=kwantCzasu;
 				}
 				daneak.add(temp);
-				czas += kwantCzasu;
 			}
 			else
 			{
@@ -41,17 +38,14 @@ public class Rr{
 				{
 					r.czasOczekiwania += temp.pozostalyCzasWykonania;
 				}
-				czas += temp.pozostalyCzasWykonania;
 				temp.pozostalyCzasWykonania = 0;
 				pamiec.put(temp.numerProcesu, temp);
 			}
-			if (wej.hasNext() && czas > 12)
+			if (sc.hasNext() && daneak.size() < 5)
 			{
 				i++;
-				daneak.add(new Rekord(i, wej.nextInt(), 0));
-				czas = 0;
+				daneak.add(new Rekord(i, sc.nextInt(), 0));
 			}
-
 		}
 		
 		
@@ -63,7 +57,7 @@ public class Rr{
 			System.out.println(pamiec.get(j));
 		}
 		float te = czasc/i;
-		System.out.println("Åšredni czas oczekiwania wyniÃ³sÅ‚ " + te + " ms");
+		System.out.println("Œredni czas oczekiwania wyniós³‚ " + te + " ms");
 	}
 
 }
